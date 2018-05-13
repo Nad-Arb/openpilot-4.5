@@ -215,7 +215,7 @@ class CarState(object):
     #self.esp_disabled = cp.vl["VSA_STATUS"]['ESP_DISABLED']
 
     # calc best v_ego estimate, by averaging two opposite corners
-    self.v_wheel_fl = cp.vl["WHEEL_SPEEDS"]['WHEEL_SPEED_FL'] #* CV.KPH_TO_MS
+    self.v_wheel_fl = cp.vl["WHEEL_SPEEDS"]['WHEEL_SPEED_FL'] * CV.KPH_TO_MS
     self.v_wheel = self.v_wheel_fl 
 
     # blend in transmission speed at low speed, since it has more low speed accuracy
