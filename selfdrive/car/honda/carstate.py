@@ -44,7 +44,15 @@ def parse_gear_shifter(can_gear_shifter, car_fingerprint):
        return "drive"
      elif can_gear_shifter == 0x2:
         return "sport"
-
+elif car_fingerprint in (CAR.MITO):
+     if can_gear_shifter == 0x4:
+       return "reverse"
+     elif can_gear_shifter == 0x6:
+       return "park"
+     elif can_gear_shifter == 0x05:
+       return "drive"
+     #elif can_gear_shifter == 0x2:
+        #return "sport"
   return "unknown"
 
 
@@ -98,7 +106,7 @@ def get_can_signals(CP):
       ("ACC_STATUS", "POWERTRAIN_DATA", 0),
   ]
 
-  checks = [
+  #checks = [
       ("ENGINE_DATA", 100),
       ("WHEEL_SPEEDS", 50),
       ("STEERING_SENSORS", 100),
@@ -143,6 +151,23 @@ def get_can_signals(CP):
   elif CP.carFingerprint == CAR.RIDGELINE:
     dbc_f = 'honda_ridgeline_black_edition_2017_can_generated.dbc'
     signals += [("MAIN_ON", "SCM_BUTTONS", 0)]
+  elif CP.carFingerprint == CAR.MITO:
+    dbc_f = 'alfa_romeo_mito.dbc'
+    signals += [("MAIN_ON", "SCM_BUTTONS", 0),
+                ("CRUISE_BUTTONS", "SCM_BUTTONS", 0),
+                ("DOOR_CLOSED", "BODY", 0),
+                ("STEER_ANGLE", "STEERING", 0),
+                ("STEER_TORQUE_SENSOR", "STEERING", 0),
+                ("STEER_ANGLE_RATE", "STEERING", 0),
+                ("GEAR_SHIFTER", "DSG", 0),
+                ("WHEEL_SPEED_FL", "SPEED", 0),
+                ("BRAKE_SWITCH", "SCM_BUTTONS", 0),
+                ("BRAKE_PRESSED", "BRAKE_PEDAL", 0),
+                ("PEDAL_GAS", "ECU", 0),
+                ("CAR_GAS", "ECU", 0),
+
+
+                ]
 
   # add gas interceptor reading if we are using it
   if CP.enableGasInterceptor:
@@ -200,27 +225,23 @@ class CarState(object):
     self.prev_right_blinker_on = self.right_blinker_on
 
     # ******************* parse out can *******************
-    self.door_all_closed = not any([cp.vl["DOORS_STATUS"]['DOOR_OPEN_FL'], cp.vl["DOORS_STATUS"]['DOOR_OPEN_FR'],
-                                    cp.vl["DOORS_STATUS"]['DOOR_OPEN_RL'], cp.vl["DOORS_STATUS"]['DOOR_OPEN_RR']])
-    self.seatbelt = not cp.vl["SEATBELT_STATUS"]['SEATBELT_DRIVER_LAMP'] and cp.vl["SEATBELT_STATUS"]['SEATBELT_DRIVER_LATCHED']
+    self.door_all_closed = not any([cp.vl["BODY"]['DOOR_CLOSED']
+    #self.seatbelt = not cp.vl["SEATBELT_STATUS"]['SEATBELT_DRIVER_LAMP'] and cp.vl["SEATBELT_STATUS"]['SEATBELT_DRIVER_LATCHED']
 
     # 2 = temporary 3= TBD 4 = temporary, hit a bump 5 (permanent) 6 = temporary 7 (permanent)
     # TODO: Use values from DBC to parse this field
-    self.steer_error = cp.vl["STEER_STATUS"]['STEER_STATUS'] not in [0, 2, 3, 4, 6]
-    self.steer_not_allowed = cp.vl["STEER_STATUS"]['STEER_STATUS'] != 0
-    self.brake_error = cp.vl["STANDSTILL"]['BRAKE_ERROR_1'] or cp.vl["STANDSTILL"]['BRAKE_ERROR_2']
-    self.esp_disabled = cp.vl["VSA_STATUS"]['ESP_DISABLED']
+    #self.steer_error = cp.vl["STEER_STATUS"]['STEER_STATUS'] not in [0, 2, 3, 4, 6]
+    #self.steer_not_allowed = cp.vl["STEER_STATUS"]['STEER_STATUS'] != 0
+   # self.brake_error = cp.vl["STANDSTILL"]['BRAKE_ERROR_1'] or cp.vl["STANDSTILL"]['BRAKE_ERROR_2']
+    #self.esp_disabled = cp.vl["VSA_STATUS"]['ESP_DISABLED']
 
     # calc best v_ego estimate, by averaging two opposite corners
-    self.v_wheel_fl = cp.vl["WHEEL_SPEEDS"]['WHEEL_SPEED_FL'] * CV.KPH_TO_MS
-    self.v_wheel_fr = cp.vl["WHEEL_SPEEDS"]['WHEEL_SPEED_FR'] * CV.KPH_TO_MS
-    self.v_wheel_rl = cp.vl["WHEEL_SPEEDS"]['WHEEL_SPEED_RL'] * CV.KPH_TO_MS
-    self.v_wheel_rr = cp.vl["WHEEL_SPEEDS"]['WHEEL_SPEED_RR'] * CV.KPH_TO_MS
-    self.v_wheel = (self.v_wheel_fl + self.v_wheel_fr + self.v_wheel_rl + self.v_wheel_rr) / 4.
+    self.v_wheel_fl = cp.vl["WHEEL_SPEEDS"]['WHEEL_SPEED_FL'] #* CV.KPH_TO_MS
+    self.v_wheel = self.v_wheel_fl 
 
     # blend in transmission speed at low speed, since it has more low speed accuracy
-    self.v_weight = interp(self.v_wheel, v_weight_bp, v_weight_v)
-    speed = (1. - self.v_weight) * cp.vl["ENGINE_DATA"]['XMISSION_SPEED'] * CV.KPH_TO_MS + self.v_weight * self.v_wheel
+    #self.v_weight = interp(self.v_wheel, v_weight_bp, v_weight_v)
+    #speed = (1. - self.v_weight) * cp.vl["ENGINE_DATA"]['XMISSION_SPEED'] * CV.KPH_TO_MS + self.v_weight * self.v_wheel
 
     if abs(speed - self.v_ego) > 2.0:  # Prevent large accelerations when car starts at non zero speed
       self.v_ego_x = np.matrix([[speed], [0.0]])
@@ -236,17 +257,17 @@ class CarState(object):
       self.user_gas = cp.vl["GAS_SENSOR"]['INTERCEPTOR_GAS']
       self.user_gas_pressed = self.user_gas > 0 # this works because interceptor read < 0 when pedal position is 0. Once calibrated, this will change
 
-    can_gear_shifter = cp.vl["GEARBOX"]['GEAR_SHIFTER']
-    self.gear = 0 if self.CP.carFingerprint == CAR.CIVIC else cp.vl["GEARBOX"]['GEAR']
-    self.angle_steers = cp.vl["STEERING_SENSORS"]['STEER_ANGLE']
-    self.angle_steers_rate = cp.vl["STEERING_SENSORS"]['STEER_ANGLE_RATE']
+    can_gear_shifter = cp.vl["DSG"]['GEAR_SHIFTER']
+    self.gear = 0 if self.CP.carFingerprint == CAR.CIVIC else cp.vl["DSG"]['GEAR']
+    self.angle_steers = cp.vl["STEERING"]['STEER_ANGLE']
+    self.angle_steers_rate = cp.vl["STEERING"]['STEER_ANGLE_RATE']
 
     self.cruise_setting = cp.vl["SCM_BUTTONS"]['CRUISE_SETTING']
     self.cruise_buttons = cp.vl["SCM_BUTTONS"]['CRUISE_BUTTONS']
 
-    self.blinker_on = cp.vl["SCM_FEEDBACK"]['LEFT_BLINKER'] or cp.vl["SCM_FEEDBACK"]['RIGHT_BLINKER']
-    self.left_blinker_on = cp.vl["SCM_FEEDBACK"]['LEFT_BLINKER']
-    self.right_blinker_on = cp.vl["SCM_FEEDBACK"]['RIGHT_BLINKER']
+    #self.blinker_on = cp.vl["SCM_FEEDBACK"]['LEFT_BLINKER'] or cp.vl["SCM_FEEDBACK"]['RIGHT_BLINKER']
+    #self.left_blinker_on = cp.vl["SCM_FEEDBACK"]['LEFT_BLINKER']
+    #self.right_blinker_on = cp.vl["SCM_FEEDBACK"]['RIGHT_BLINKER']
 
     if self.CP.carFingerprint in (CAR.CIVIC, CAR.ODYSSEY):
       self.park_brake = cp.vl["EPB_STATUS"]['EPB_STATE'] != 0
