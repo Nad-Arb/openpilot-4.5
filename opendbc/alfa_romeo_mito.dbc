@@ -1,0 +1,243 @@
+VERSION ""
+
+
+NS_ :
+    NS_DESC_
+    CM_
+    BA_DEF_
+    BA_
+    VAL_
+    CAT_DEF_
+    CAT_
+    FILTER
+    BA_DEF_DEF_
+    EV_DATA_
+    ENVVAR_DATA_
+    SGTYPE_
+    SGTYPE_VAL_
+    BA_DEF_SGTYPE_
+    BA_SGTYPE_
+    SIG_TYPE_REF_
+    VAL_TABLE_
+    SIG_GROUP_
+    SIG_VALTYPE_
+    SIGTYPE_VALTYPE_
+    BO_TX_BU_
+    BA_DEF_REL_
+    BA_REL_
+    BA_DEF_DEF_REL_
+    BU_SG_REL_
+    BU_EV_REL_
+    BU_BO_REL_
+    SG_MUL_VAL_
+
+BS_:
+
+BU_: XXX 0 1
+
+
+BO_ 258 STEERING: 8 XXX
+ SG_ STEER_ANGLE : 4|13@0+ (0.3187251,-1307.888) [-360|360] "deg" XXX
+ SG_ STEERING_RATE : 20|13@0+ (1,-4096) [0|8191] "" XXX
+
+BO_ 514 SPEED: 4 XXX
+ SG_ SPEED_LEFT : 7|16@0+ (0.07,0) [0|65535] "m/s" XXX
+ SG_ SPEED_RIGHT : 23|16@0+ (0.07,0) [0|1023] "m/s" XXX
+
+BO_ 653 BRAKE_MODULE: 2 XXX
+ SG_ BRAKE_PRESSURE : 15|8@0+ (1,0) [0|255] "" XXX
+ SG_ BRAKE_PRESSED : 4|1@0+ (1,0) [0|4] "" XXX
+
+BO_ 820 DOORS: 8 XXX
+ SG_ DOOR_OPEN_FR : 18|1@0+ (1,0) [0|1] "" XXX
+ SG_ DOOR_OPEN_RL : 19|1@0+ (1,0) [0|1] "" XXX
+ SG_ DOOR_OPEN_RR : 20|1@0+ (1,0) [0|1] "" XXX
+ SG_ DOOR_OPEN_TRUNK : 22|1@0+ (1,0) [0|1] "" XXX
+ SG_ DOOR_OPEN_FL : 17|1@0+ (1,0) [0|1] "" XXX
+ SG_ TURN_LIGHT_LEFT : 31|1@0+ (1,0) [0|1] "" XXX
+ SG_ TURN_LIGHT_RIGHT : 30|1@0+ (1,0) [0|1] "" XXX
+ SG_ HIGH_BEAM_DISPLAY : 58|1@1+ (1,0) [0|1] "" XXX
+
+BO_ 746 GEAR: 5 XXX
+ SG_ PRNDL : 0|3@1+ (1,0) [0|7] "" XXX
+
+BO_ 284 NEW_MSG_1: 8 XXX
+ SG_ BRAKE_RELATED : 3|12@0+ (1,0) [0|255] "" XXX
+ SG_ BRAKE_RELATED_2 : 17|10@0+ (1,0) [0|255] "" XXX
+ SG_ SPEED : 37|14@0+ (1,0) [0|255] "" XXX
+
+BO_ 320 NEW_MSG_2: 8 XXX
+ SG_ SPEED_RELATED : 47|8@0+ (1,0) [0|63] "" XXX
+ SG_ BRAKE_PRESSED : 2|3@0+ (1,0) [0|7] "" XXX
+
+BO_ 736 TRIP: 8 XXX
+ SG_ DISTANCE_COUNTER : 7|16@0+ (0,0) [0|65535] "Meters" XXX
+ SG_ DISTANCE_COUNTER_2 : 23|16@0+ (1,0) [0|65535] "Meters" XXX
+
+BO_ 344 WHEEL_SPEEDS: 8 XXX
+ SG_ WHEEL_SPEED_FL : 1|10@0+ (1,0) [0|65535] "" XXX
+ SG_ WHEEL_SPEED_FR : 17|10@0+ (1,0) [0|255] "" XXX
+ SG_ WHEEL_SPEED_RL : 33|10@0+ (1,0) [0|3] "" XXX
+ SG_ WHEEL_SPEED_RR : 49|10@0+ (1,0) [0|255] "" XXX
+
+BO_ 792 STEERING_LEVERS: 8 XXX
+ SG_ TURN_SIGNALS : 1|2@0+ (1,0) [0|3] "" XXX
+ SG_ HIGH_BEAM_PUSHED_IN : 2|1@1+ (1,0) [0|3] "" XXX
+ SG_ HIGH_BEAM_FLASH : 3|1@1+ (1,0) [0|3] "" XXX
+
+BO_ 264 ACCEL_PEDAL_MSG: 8 XXX
+ SG_ ACCEL_PEDAL : 32|4@1+ (1,-7) [0|15] "" XXX
+
+BO_ 2662415 NEW_MSG_3: 8 XXX
+ SG_ NEW_SIGNAL_1 : 0|8@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_2 : 31|8@0+ (1,0) [0|65535] "" XXX
+ SG_ NEW_SIGNAL_3 : 16|4@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_4 : 40|4@1+ (1,0) [0|15] "" XXX
+
+BO_ 3186689 NEW_MSG_4: 8 XXX
+ SG_ NEW_SIGNAL_1 : 47|4@0+ (1,0) [0|15] "" XXX
+ SG_ NEW_SIGNAL_2 : 39|8@0+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_3 : 56|8@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_5 : 31|8@0+ (1,0) [0|7] "" XXX
+ SG_ NEW_SIGNAL_4 : 16|3@1- (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_6 : 48|3@1+ (1,0) [0|7] "" XXX
+
+BO_ 3710987 DSG: 8 XXX
+ SG_ NEW_SIGNAL_1 : 8|7@1+ (1,0) [0|127] "" XXX
+ SG_ NEW_SIGNAL_4 : 34|3@1+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_2 : 0|8@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_6 : 48|8@1- (-1,127) [0|63] "" XXX
+ SG_ NEW_SIGNAL_7 : 59|4@1+ (1,0) [0|31] "" XXX
+ SG_ NEW_SIGNAL_5 : 32|3@1+ (1,0) [0|7] "" XXX
+ SG_ speed3 : 40|8@1+ (1,0) [0|31] "" XXX
+ SG_ GEAR_SHIFTER : 9|3@1+ (1,0) [0|7] "" XXX
+ SG_ speed2 : 24|8@1+ (1,0) [0|255] "" XXX
+ SG_ GEAR : 16|3@1+ (1,0) [0|7] "" XXX
+
+BO_ 34643974 NEW_MSG_7: 8 XXX
+ SG_ NEW_SIGNAL_1 : 43|5@1+ (1,0) [0|31] "" XXX
+ SG_ Ignition_on : 55|1@0+ (1,0) [0|3] "" XXX
+
+BO_ 417001744 NEW_MSG_8: 8 XXX
+ SG_ NEW_SIGNAL_1 : 24|6@1+ (1,0) [0|31] "" XXX
+
+BO_ 169385990 NEW_MSG_9: 8 XXX
+ SG_ NEW_SIGNAL_1 : 16|2@1+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_2 : 31|8@0+ (1,0) [0|63] "" XXX
+ SG_ NEW_SIGNAL_3 : 36|5@0+ (1,0) [0|31] "" XXX
+ SG_ NEW_SIGNAL_4 : 40|8@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_5 : 56|8@1+ (1,0) [0|255] "" XXX
+
+BO_ 170434560 NEW_MSG_10: 8 XXX
+ SG_ NEW_SIGNAL_3 : 0|2@1+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_1 : 15|8@0+ (1,0) [0|15] "" XXX
+ SG_ NEW_SIGNAL_2 : 31|8@0+ (1,0) [0|7] "" XXX
+
+BO_ 203988992 NEW_MSG_11: 8 XXX
+ SG_ NEW_SIGNAL_2 : 11|3@1+ (1,0) [0|7] "" XXX
+ SG_ NEW_SIGNAL_1 : 8|3@1+ (1,0) [0|3] "" XXX
+
+BO_ 152576001 NEW_MSG_12: 8 XXX
+ SG_ NEW_SIGNAL_1 : 18|2@1+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_2 : 6|1@0+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_3 : 0|1@0+ (1,0) [0|1] "" XXX
+ SG_ Brakepedal : 22|5@0+ (1,0) [0|7] "" XXX
+
+BO_ 1089542 BRAKE_PEDAL: 8 XXX
+ SG_ BRAKE_PRESSED : 16|8@1+ (1,0) [0|255] "" XXX
+
+BO_ 35168262 SPEED: 8 XXX
+ SG_ NEW_SIGNAL_2 : 0|8@1+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_4 : 16|2@1+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_7 : 56|8@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_8 : 48|2@1+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_1 : 8|8@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_5 : 24|8@1+ (1,0) [0|255] "" XXX
+ SG_ WHEEL_SPEED_RL : 55|16@0+ (1,0) [0|255] "" XXX
+ SG_ WHEEL_SPEED_FL : 39|16@0+ (0.068,0) [0|65535] "" XXX
+
+BO_ 35692550 NEW_MSG_16: 8 XXX
+ SG_ NEW_SIGNAL_1 : 7|16@0+ (1,0) [0|65535] "" XXX
+ SG_ NEW_SIGNAL_2 : 27|3@1+ (1,0) [0|7] "" XXX
+ SG_ NEW_SIGNAL_3 : 56|8@1+ (1,0) [0|255] "" XXX
+
+BO_ 102277121 ECU: 8 XXX
+ SG_ NEW_SIGNAL_3 : 31|8@0+ (1,0) [0|255] "" XXX
+ SG_ rpm : 8|16@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_1 : 47|16@0+ (1,0) [0|65535] "" XXX
+ SG_ PEDAL_GAS : 0|1@1+ (1,0) [0|3] "" XXX
+ SG_ CAR_GAS : 63|8@0+ (1,0) [0|255] "" XXX
+
+BO_ 3186690 STEERING: 8 XXX
+ SG_ NEW_SIGNAL_2 : 0|8@1+ (1,0) [0|255] "" XXX
+ SG_ gas_pedal_pressed : 44|1@0+ (1,0) [0|3] "" XXX
+ SG_ gas_pedal_input : 24|16@1+ (1,-3.5) [0|127] "" XXX
+ SG_ STEER_ANGLE_RATE : 56|8@1+ (1,-140) [0|255] "" XXX
+ SG_ STEER_TORQUE_SENSOR : 55|8@0- (1,7.877) [0|65535] "" XXX
+ SG_ STEER_ANGLE : 31|16@0+ (1,-37316.32) [0|65535] "" XXX
+
+BO_ 169951234 NEW_MSG_20: 8 XXX
+ SG_ NEW_SIGNAL_2 : 63|8@0+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_3 : 23|1@0+ (1,0) [0|3] "" XXX
+
+BO_ 135307286 GEARBOX1: 4 XXX
+ SG_ NEW_SIGNAL_3 : 24|2@1+ (1,0) [0|7] "" XXX
+ SG_ NEW_SIGNAL_4 : 26|1@1+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_5 : 30|3@0+ (1,0) [0|7] "" XXX
+ SG_ rpm : 40|16@1+ (0.125,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_6 : 8|2@1+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_2 : 16|8@1+ (1,0) [0|3] "" XXX
+ SG_ gear_shifter2 : 10|3@1+ (1,0) [0|3] "" XXX
+
+BO_ 169648129 NEW_MSG_23: 8 XXX
+ SG_ NEW_SIGNAL_2 : 51|4@1+ (1,0) [0|15] "" XXX
+
+BO_ 135831552 Stalks: 8 XXX
+ SG_ NEW_SIGNAL_2 : 0|3@1+ (1,0) [0|3] "" XXX
+ SG_ turnsigna_on : 15|1@1+ (1,0) [0|255] "" XXX
+ SG_ lights : 32|5@1+ (1,0) [0|7] "" XXX
+ SG_ high_beam : 22|2@0+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_1 : 29|1@0+ (1,0) [0|3] "" XXX
+
+BO_ 135307264 SCM_BUTTONS: 4 XXX
+ SG_ cruise_stalk2 : 14|3@0+ (1,0) [0|7] "" XXX
+ SG_ cruise_on2 : 15|1@0+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_1 : 18|2@1+ (1,0) [0|15] "" XXX
+ SG_ MAIN_ON : 7|1@0+ (1,0) [0|31] "" XXX
+ SG_ CRUISE_BUTTONS : 6|3@0+ (1,0) [0|7] "" XXX
+ SG_ BRAKE_SWITCH : 23|4@0+ (1,0) [0|255] "" XXX
+
+BO_ 169385985 GEARBOX3: 8 XXX
+ SG_ NEW_SIGNAL_1 : 40|8@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_2 : 32|4@1+ (1,0) [0|15] "" XXX
+ SG_ NEW_SIGNAL_3 : 53|6@0+ (1,0) [0|63] "" XXX
+ SG_ cruise_on : 9|1@1+ (1,0) [0|7] "" XXX
+ SG_ reverse : 58|1@1+ (1,0) [0|3] "" XXX
+
+BO_ 203202560 BODY: 8 XXX
+ SG_ DOOR_CLOSED : 18|1@1+ (1,0) [0|3] "" XXX
+
+BO_ 169385984 ac: 8 XXX
+ SG_ ac_button : 10|1@1+ (1,0) [0|3] "" XXX
+ SG_ defrost : 52|1@0+ (1,0) [0|3] "" XXX
+
+
+
+
+CM_ SG_ 258 STEER_ANGLE "positive is left (counter-clockwise)";
+CM_ SG_ 514 SPEED_LEFT "TODO find upper limit";
+CM_ SG_ 653 BRAKE_PRESSURE "max seems to be 148";
+CM_ SG_ 820 TURN_LIGHT_LEFT "oscillates with the light blinking";
+CM_ SG_ 820 TURN_LIGHT_RIGHT "hazard blinks both right and left lights";
+CM_ SG_ 746 PRNDL "4=D, 3=N, 2=R, 1=P";
+CM_ SG_ 284 BRAKE_RELATED "Correlates with braking";
+CM_ SG_ 284 SPEED "Another Speed Signal, Maybe RPMs?";
+CM_ SG_ 320 BRAKE_PRESSED "Value is 5 when brake is pressed";
+CM_ SG_ 792 TURN_SIGNALS "1=Left, 2=Right";
+CM_ SG_ 792 HIGH_BEAM_FLASH "use this for genericToggle";
+CM_ SG_ 264 ACCEL_PEDAL "not in ACC so seems to be actual pedal. Use for gasPressed";
+CM_ SG_ 3710987 GEAR_SHIFTER "p=6, r=4 n=3 d=5";
+CM_ SG_ 102277121 CAR_GAS "255 = max";
+CM_ SG_ 203202560 DOOR_CLOSED "1 = closed";
+VAL_ 746 PRNDL 4 "Drive" 3 "Neutral" 2 "Reverse" 1 "Park" ;
+VAL_ 792 TURN_SIGNALS 2 "Right" 1 "Left" ;
