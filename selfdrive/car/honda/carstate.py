@@ -44,7 +44,7 @@ def parse_gear_shifter(can_gear_shifter, car_fingerprint):
        return "drive"
      elif can_gear_shifter == 0x2:
         return "sport"
-elif car_fingerprint in (CAR.MITO):
+  elif car_fingerprint in (CAR.MITO):
      if can_gear_shifter == 0x4:
        return "reverse"
      elif can_gear_shifter == 0x6:
