@@ -35,24 +35,15 @@ def parse_gear_shifter(can_gear_shifter, car_fingerprint):
     elif can_gear_shifter == 0x20:
       return "low"
 
-  elif car_fingerprint in (CAR.PILOT, CAR.RIDGELINE):
-     if can_gear_shifter == 0x8:
-       return "reverse"
-     elif can_gear_shifter == 0x4:
-       return "park"
-     elif can_gear_shifter == 0x20:
-       return "drive"
-     elif can_gear_shifter == 0x2:
-        return "sport"
-  elif car_fingerprint in (CAR.MITO):
+  elif car_fingerprint in (CAR.PILOT, CAR.RIDGELINE, CAR.MITO):
      if can_gear_shifter == 0x4:
        return "reverse"
      elif can_gear_shifter == 0x6:
        return "park"
      elif can_gear_shifter == 0x05:
        return "drive"
-     #elif can_gear_shifter == 0x2:
-        #return "sport"
+
+
   return "unknown"
 
 
