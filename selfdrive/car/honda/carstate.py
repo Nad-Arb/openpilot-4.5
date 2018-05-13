@@ -95,23 +95,7 @@ def get_can_signals(CP):
       ("PEDAL_GAS", "POWERTRAIN_DATA", 0),
       ("CRUISE_SETTING", "SCM_BUTTONS", 0),
       ("ACC_STATUS", "POWERTRAIN_DATA", 0),
-  ]
 
-  #checks = [
-      ("ENGINE_DATA", 100),
-      ("WHEEL_SPEEDS", 50),
-      ("STEERING_SENSORS", 100),
-      ("DOORS_STATUS", 3),
-      ("SCM_FEEDBACK", 10),
-      ("CRUISE_PARAMS", 10),
-      ("GEARBOX", 100),
-      ("STANDSTILL", 50),
-      ("SEATBELT_STATUS", 10),
-      ("CRUISE", 10),
-      ("POWERTRAIN_DATA", 100),
-      ("VSA_STATUS", 50),
-      ("SCM_BUTTONS", 25),
-  ]
 
   if CP.carFingerprint == CAR.CIVIC:
     dbc_f = 'honda_civic_touring_2016_can_generated.dbc'
